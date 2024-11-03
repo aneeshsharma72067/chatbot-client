@@ -36,7 +36,7 @@ const formSchema = z.object({
     .max(50),
 });
 
-const login = () => {
+const Login = () => {
   const [, setUser] = useAtom(userAtom);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -123,4 +123,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

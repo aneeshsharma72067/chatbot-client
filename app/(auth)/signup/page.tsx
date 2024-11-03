@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { userAtom } from "@/stores/store";
 import { useAtom } from "jotai";
 import { User } from "@/@types/types";
+import { toast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   username: z
@@ -35,7 +36,7 @@ const formSchema = z.object({
     .max(50),
 });
 
-const signup = () => {
+const Signup = () => {
   const router = useRouter();
   const [user, setUser] = useAtom(userAtom);
 
@@ -123,4 +124,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
