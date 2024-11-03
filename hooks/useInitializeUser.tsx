@@ -9,7 +9,10 @@ function useInitializeUser() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log("fetchUser in useInitializeUser called");
+      console.log(
+        "fetchUser in useInitializeUser called, api url = ",
+        process.env.NEXT_PUBLIC_FLASK_API_URL
+      );
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_FLASK_API_URL}/auth-check`,
         {
