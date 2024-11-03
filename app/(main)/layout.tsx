@@ -82,13 +82,14 @@ export default function ChatbotInterface({
         "Content-Type": "application/json",
       },
     });
+    const data = await res.json();
     if (res.ok) {
-      const data = await res.json();
       setChats(() => data);
     } else {
       toast({
         variant: "destructive",
-        description: "Something went wrong while fetching chats !!",
+        // description: "Something went wrong while fetching chats !!",
+        description: data.error,
       });
     }
   }
