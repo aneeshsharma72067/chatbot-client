@@ -9,17 +9,15 @@ function useInitializeUser() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log(
-        "fetchUser in useInitializeUser called, api url = ",
-        process.env.NEXT_PUBLIC_FLASK_API_URL
-      );
+      const token = localStorage.getItem("token");
+      console.log("fetchUser in useInitializeUser called, token = ", token);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_FLASK_API_URL}/auth-check`,
         {
           method: "GET",
-          credentials: "include", // ensures cookies are sent with request
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );

@@ -80,6 +80,7 @@ export default function ChatbotInterface({
       credentials: "include", // ensures cookies are sent with request
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     const data = await res.json();

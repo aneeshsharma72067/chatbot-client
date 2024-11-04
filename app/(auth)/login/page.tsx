@@ -51,17 +51,20 @@ const Login = () => {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(values),
     });
     if (res.ok) {
       const data = await res.json();
+      console.log(data);
+      localStorage.setItem("token", data.token);
       const newUser: User = {
         id: data.user.id,
         username: data.user.username,
         created_at: data.user.created_at,
       };
-      localStorage.setItem("user", JSON.stringify(newUser));
+
       setUser(() => newUser);
       toast({
         description: "Logged in successfully",

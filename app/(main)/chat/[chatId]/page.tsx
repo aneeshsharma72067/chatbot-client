@@ -32,6 +32,7 @@ export default function Chat({ params }: { params: { chatId: string } }) {
         credentials: "include", // ensures cookies are sent with request
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ content: inputValue }),
       }
@@ -64,6 +65,7 @@ export default function Chat({ params }: { params: { chatId: string } }) {
         credentials: "include", // ensures cookies are sent with request
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

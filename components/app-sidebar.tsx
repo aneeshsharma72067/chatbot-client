@@ -71,6 +71,7 @@ export function AppSidebar() {
       credentials: "include", // ensures cookies are sent with request
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({ title: title }),
     });
@@ -95,6 +96,7 @@ export function AppSidebar() {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
@@ -120,6 +122,7 @@ export function AppSidebar() {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
