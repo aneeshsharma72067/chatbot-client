@@ -28,6 +28,9 @@ export default function RootLayout({
   }, [user]);
   return (
     <html lang="en">
+      <head>
+        <title>AI Powered Chat Assistant</title>
+      </head>
       <body className={inter.className}>
         <Toaster />
         <ThemeProvider

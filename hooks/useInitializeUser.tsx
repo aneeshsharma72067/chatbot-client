@@ -10,7 +10,6 @@ function useInitializeUser() {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
-      console.log("fetchUser in useInitializeUser called, token = ", token);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_FLASK_API_URL}/auth-check`,
         {
@@ -23,12 +22,7 @@ function useInitializeUser() {
       );
       if (response.ok) {
         const userData = await response.json();
-        console.log(userData);
-
-        console.log("user is logged in");
         setUser(userData); // Initialize Jotai user state with user data
-      } else {
-        console.log("user is not logged in");
       }
     };
 

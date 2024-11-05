@@ -102,6 +102,7 @@ export function AppSidebar() {
 
     if (res.ok) {
       setUser(() => null);
+      localStorage.removeItem("token");
       toast({
         description: "Logged out successfully",
       });

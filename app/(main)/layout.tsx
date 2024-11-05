@@ -89,8 +89,7 @@ export default function ChatbotInterface({
     } else {
       toast({
         variant: "destructive",
-        // description: "Something went wrong while fetching chats !!",
-        description: data.error,
+        description: "Something went wrong while fetching chats !!",
       });
     }
   }

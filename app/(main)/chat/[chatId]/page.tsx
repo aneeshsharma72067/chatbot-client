@@ -39,17 +39,14 @@ export default function Chat({ params }: { params: { chatId: string } }) {
     );
     if (res.ok) {
       const { user_message, bot_message } = await res.json();
-      console.log(user_message);
       setChatMessages((messages) => [...messages, user_message]);
       setInputValue("");
       setTimeout(() => {
         if (bot_message) {
-          console.log(bot_message);
           setChatMessages((messages) => [...messages, bot_message]);
         }
       }, 1000);
       if (scrollAreaRef.current) {
-        console.log("scrolled to bottom");
         scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
       }
     }
@@ -71,11 +68,9 @@ export default function Chat({ params }: { params: { chatId: string } }) {
     );
     if (res.ok) {
       const data: Message[] = await res.json();
-      console.log(data);
       setChatMessages(() => data);
       setMessagesAvail(true);
       if (scrollAreaRef.current) {
-        console.log("scrolled to bottom");
         scrollAreaRef.current.scrollIntoView({ behavior: "smooth" });
       }
     } else {
