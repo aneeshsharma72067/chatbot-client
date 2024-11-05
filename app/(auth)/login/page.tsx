@@ -78,7 +78,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-start w-full justify-center gap-10">
-      <h1 className="font-bold text-white text-5xl">Login</h1>
+      <h1 className="font-bold text-5xl">Login</h1>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
