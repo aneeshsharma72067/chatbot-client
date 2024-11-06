@@ -49,7 +49,7 @@ const Signup = () => {
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/register`,
+      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/register`,
       {
         method: "POST",
         credentials: "include",

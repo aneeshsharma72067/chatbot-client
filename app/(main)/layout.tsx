@@ -75,7 +75,7 @@ export default function ChatbotInterface({
   const [chatToRename, setChatToRename] = useState("");
 
   async function getChats() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats`, {
       method: "GET",
       credentials: "include", // ensures cookies are sent with request
       headers: {

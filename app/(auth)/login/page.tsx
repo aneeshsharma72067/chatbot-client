@@ -46,7 +46,7 @@ const Login = () => {
     },
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FLASK_API_URL}/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/login`, {
       method: "POST",
       credentials: "include",
       headers: {
