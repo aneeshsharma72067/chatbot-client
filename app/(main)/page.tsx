@@ -18,7 +18,7 @@ import { useAtom } from "jotai";
 import { chatsAtom } from "@/stores/store";
 import { Chat } from "@/@types/types";
 import { Label } from "@/components/ui/label";
-const page = () => {
+const Page = () => {
   const [title, setTitle] = useState("New Chat");
   const [isOpen, setIsOpen] = useState(false);
   const [isFactOpen, setIsFactOpen] = useState(false);
@@ -92,8 +92,8 @@ const page = () => {
       </h1>
       <div className="w-4/5 sm:w-2/3 text-center">
         Your personal AI assistant is here and ready to help you with whatever
-        you need. Whether it's answering questions, learning something new, or
-        simply having a chat, just type in what’s on your mind.
+        you need. Whether it&apos;s answering questions, learning something new,
+        or simply having a chat, just type in what’s on your mind.
       </div>
       <div className="w-2/3 sm:w-1/2 flex gap-4 items-center justify-center">
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -172,4 +172,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
