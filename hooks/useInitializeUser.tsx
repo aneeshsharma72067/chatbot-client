@@ -11,7 +11,7 @@ function useInitializeUser() {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/auth-check`,
+        `${process.env.NEXT_PUBLIC_FLASK_API_URL}/auth-check`,
         {
           method: "GET",
           headers: {

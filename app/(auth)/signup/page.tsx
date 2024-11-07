@@ -20,6 +20,8 @@ import { userAtom } from "@/stores/store";
 import { useAtom } from "jotai";
 import { User } from "@/@types/types";
 import { toast } from "@/hooks/use-toast";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const formSchema = z.object({
   username: z
@@ -37,8 +39,7 @@ const formSchema = z.object({
 });
 
 const Signup = () => {
-  const router = useRouter();
-  const [user, setUser] = useAtom(userAtom);
+  const [, setUser] = useAtom(userAtom);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,9 +48,15 @@ const Signup = () => {
       password: "",
     },
   });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/register`,
+      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/register`,
       {
         method: "POST",
         credentials: "include",
@@ -71,7 +78,7 @@ const Signup = () => {
     } else {
       toast({
         variant: "destructive",
-        description: "Something went wrong  !!",
+        description: data.error,
       });
     }
   }
@@ -91,7 +98,7 @@ const Signup = () => {
               <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="eg. Alex" {...field} />
                 </FormControl>
                 <FormDescription>Your username</FormDescription>
                 <FormMessage />
@@ -105,7 +112,35 @@ const Signup = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" type="password" {...field} />
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter a secure password"
+                      {...field}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                      onClick={togglePasswordVisibility}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                    >
+                      {showPassword ? (
+                        <EyeOff
+                          className="h-4 w-4 text-gray-500"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <Eye
+                          className="h-4 w-4 text-gray-500"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Button>
+                  </div>
                 </FormControl>
                 <FormDescription>Your Password</FormDescription>
                 <FormMessage />

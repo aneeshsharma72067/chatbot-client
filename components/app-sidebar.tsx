@@ -65,8 +65,15 @@ export function AppSidebar() {
   const router = useRouter();
 
   async function onSubmit() {
+    if (!title) {
+      toast({
+        variant: "destructive",
+        description: "Title can't be empty !",
+      });
+      return;
+    }
     setTitleLoader(true);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats`, {
       method: "POST",
       credentials: "include", // ensures cookies are sent with request
       headers: {
@@ -82,7 +89,7 @@ export function AppSidebar() {
     } else {
       toast({
         variant: "destructive",
-        description: "Something went wrong while creating chat !!",
+        description: data.error,
       });
     }
     setTitleLoader(false);
@@ -91,17 +98,14 @@ export function AppSidebar() {
 
   async function onLogout() {
     setLogoutLoader(true);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/logout`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_FLASK_API_URL}/logout`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
 
     if (res.ok) {
       setUser(() => null);
@@ -120,7 +124,7 @@ export function AppSidebar() {
 
   async function onDelete(chat_id: string) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats/${chat_id}`,
+      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats/${chat_id}`,
       {
         method: "DELETE",
         credentials: "include",

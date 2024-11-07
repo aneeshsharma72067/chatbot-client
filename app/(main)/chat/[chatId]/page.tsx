@@ -26,7 +26,7 @@ export default function Chat({ params }: { params: { chatId: string } }) {
     }
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats/${params.chatId}/messages`,
+      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats/${params.chatId}/messages`,
       {
         method: "POST",
         credentials: "include", // ensures cookies are sent with request
@@ -56,7 +56,7 @@ export default function Chat({ params }: { params: { chatId: string } }) {
   async function getMessages() {
     setMessagesAvail(false);
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats/${params.chatId}/messages`,
+      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats/${params.chatId}/messages`,
       {
         method: "GET",
         credentials: "include", // ensures cookies are sent with request

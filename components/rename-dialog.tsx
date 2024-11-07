@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
 import { Button } from "./ui/button";
-import { Loader2, Plus } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 
@@ -30,12 +30,13 @@ export default function RenameDialog({ chat_id, isOpen, setIsOpen }: Props) {
     setTitleLoader(true);
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_DEV_SERVER_URL}/chats/${chat_id}`,
+      `${process.env.NEXT_PUBLIC_FLASK_API_URL}/chats/${chat_id}`,
       {
         method: "PUT",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ title: title }),
       }
